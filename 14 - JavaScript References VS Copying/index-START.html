@@ -8,9 +8,22 @@
 
   <script>
     // start with strings, numbers and booleans
+//    let age = 100;
+//    let age2 = age;
+//    console.log(age, age2);
+//    age = 200;
+//    console.log(age, age2);
+//
+//    let name = 'Wes';
+//    let name2 = name;
+//    console.log(name,name2);
+//    name = 'Wesley';
+//    console.log( name, name2);
 
     // Let's say we have an array
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+    const team = players;
+    team[3] = 'Lux';
 
     // and we want to make a copy of it.
 
@@ -25,12 +38,21 @@
     // Why? It's because that is an array reference, not an array copy. They both point to the same array!
 
     // So, how do we fix this? We take a copy instead!
+    const team2 = players.slice();
 
     // one day
 
     // or create a new array and concat the old one in
+    const team3 = [].concat(players);
+    team3.push('team3');
 
     // or use the new ES6 Spread
+    const team4 = [...players];
+    team4.push('team4');
+
+    const team5 = Array.from(players);
+    team5.push('team5');
+
 
     // now when we update it, the original one isn't changed
 
@@ -41,10 +63,39 @@
     // and think we make a copy:
 
     // how do we take a copy instead?
+    const person = {
+        name: 'Wes',
+        age: 12
+    };
+    const cap = Object.assign({}, person, {number: 99, age: 22});
+    console.log(person, cap);
 
-    // We will hopefully soon see the object ...spread
+    const wes = {
+        // param level 1
+        name: 'wes',
+        age: 100,
+        social: {
+            // param level 2
+            twitter: '$wesbos',
+            facebook: 'wesbos.dev'
+        }
+    };
 
-    // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+    // copy only first level (
+    // if change second level param, changes param in two obj!
+    const dev = Object.assign({}, wes);
+
+//    dev.social.twitter = '@coolman';
+//    console.log(wes.social);
+//    console.log(dev.social);
+
+
+    // this method copy all level and params from object
+    const dev2 = JSON.parse(JSON.stringify(wes));
+
+//      dev2.social.twitter = '@coolman';
+//      console.log(wes.social);
+//      console.log(dev2.social);
 
   </script>
 
