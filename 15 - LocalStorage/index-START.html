@@ -70,6 +70,28 @@
   itemsList.addEventListener('click', toggleDone);
   populateList(items, itemsList);
 
+  function toggleCheck() {
+      items.forEach(item => {
+          if(!item.done) item.done = !item.done;
+      });
+      localStorage.setItem('items', JSON.stringify(items));
+      populateList(items, itemsList);
+  }
+
+  function toggleUncheck() {
+      items.forEach(item => {
+          if(item.done) item.done = !item.done;
+      });
+      localStorage.setItem('items', JSON.stringify(items));
+      populateList(items, itemsList);
+  }
+
+
+  const checkedAll = document.querySelector('.checked-all');
+  const uncheckedAll = document.querySelector('.unchecked-all');
+
+  checkedAll.addEventListener('click', toggleCheck);
+  uncheckedAll.addEventListener('click', toggleUncheck);
 
 
 </script>
